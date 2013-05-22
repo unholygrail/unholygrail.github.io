@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>Tour</title>
+        <link rel="stylesheet" href="/theme/css/main.css">
+                
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Unholy Grail documentation </a></h1>
+                <nav><ul>
+                                                    <li><a href="/pages/tour.html">Tour</a></li>
+                                                                                </ul></nav>
+        </header><!-- /#banner -->
+                
+<section id="content" class="body">    
+    <h1 class="entry-title">Tour</h1>
+        
+        <h1>Literals and special values</h1>
+<div class="highlight"><pre><span class="m">0</span><span class="n">, </span><span class="m">1</span><span class="n">, </span><span class="m">2613</span><span class="n">, </span><span class="m">100000</span><span class="n">, </span><span class="m">100_000</span><span class="n">          </span><span class="c1">;; Base 10 integers</span>
+<span class="m">9.999</span><span class="n">, </span><span class="m">4e10</span><span class="n">, .</span><span class="m">5</span><span class="n">, </span><span class="m">5</span><span class="n">.                  </span><span class="c1">;; Base 10 floats</span>
+<span class="m">2r1_100_100</span><span class="n">, </span><span class="m">3r10_201</span><span class="n">, </span><span class="m">16r64</span><span class="n">, </span><span class="m">30r3A</span><span class="n">  </span><span class="c1">;; Other bases integers</span>
+<span class="m">2r11.01</span><span class="n">, </span><span class="m">36RZzZ.zZzZzZz</span><span class="n">              </span><span class="c1">;; Other bases floats</span>
+
+<span class="s">&quot;these&quot;</span><span class="n">, </span><span class="s">&quot;are&quot;</span><span class="n">, </span><span class="s">&quot;strings&quot;</span>
+<span class="na">.these</span><span class="n">, </span><span class="na">.are</span><span class="n">, </span><span class="na">.strings</span><span class="n">, </span><span class="na">.too</span>
+
+<span class="no">True</span><span class="n">, </span><span class="no">False</span><span class="n">, </span><span class="no">None</span>
+<span class="no">Void</span><span class="n">, ()                             </span><span class="c1">;; Void == ()</span>
+</pre></div>
+
+
+<h1>Data structures</h1>
+<p>The basic data types in UG are <em>lists</em>:</p>
+<div class="highlight"><pre><span class="n">[], [</span><span class="m">1</span><span class="n">], [</span><span class="s">&quot;a&quot;</span><span class="n">, </span><span class="s">&quot;b&quot;</span><span class="n">, </span><span class="s">&quot;c&quot;</span><span class="n">]</span>
+</pre></div>
+
+
+<p>And <em>dictionaries</em>:</p>
+<div class="highlight"><pre><span class="n">{</span><span class="s">&quot;a&quot;</span><span class="kd"> =&gt; </span><span class="m">1</span><span class="n">}, {</span><span class="m">0</span><span class="kd"> =&gt; </span><span class="s">&quot;zero&quot;</span><span class="n">, </span><span class="m">1</span><span class="kd"> =&gt; </span><span class="s">&quot;one&quot;</span><span class="n">}</span>
+<span class="c1">;; alternative syntax when keys are strings</span>
+<span class="n">{a</span><span class="kd"> = </span><span class="m">1</span><span class="n">, b</span><span class="kd"> = </span><span class="m">2</span><span class="n">}</span>
+<span class="c1">;; IMPORTANT: notation for empty dictionaries is as follows:</span>
+<span class="n">{</span><span class="o">=</span><span class="n">}, {</span><span class="o">=&gt;</span><span class="n">}</span>
+</pre></div>
+
+
+<p>Both of them can be indexed using the <code>?</code> operator.</p>
+<div class="highlight"><pre><span class="n">xs</span><span class="kd"> = </span><span class="n">[</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">, </span><span class="m">3</span><span class="n">, </span><span class="m">4</span><span class="n">]</span>
+<span class="n">print[xs</span><span class="o">?</span><span class="m">0</span><span class="n">]        </span><span class="c1">;; 1</span>
+<span class="n">xs</span><span class="o">?</span><span class="m">0</span><span class="kd"> := </span><span class="m">11</span><span class="n">         </span><span class="c1">;; xs is now [11, 2, 3, 4]</span>
+
+<span class="n">d</span><span class="kd"> = </span><span class="n">{Balthazar</span><span class="kd"> = </span><span class="m">27</span><span class="n">, Julie</span><span class="kd"> = </span><span class="m">25</span><span class="n">}</span>
+<span class="n">print[</span><span class="s">&quot;Balthazar is&quot;</span><span class="n">, d</span><span class="o">?</span><span class="s">&quot;Balthazar&quot;</span><span class="n">, </span><span class="s">&quot;years old.&quot;</span><span class="n">]</span>
+</pre></div>
+
+
+<p><em>Sets</em>:</p>
+<div class="highlight"><pre><span class="n">{</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">, </span><span class="m">3</span><span class="n">, </span><span class="m">4</span><span class="n">}, {</span><span class="s">&quot;set&quot;</span><span class="n">, </span><span class="s">&quot;of&quot;</span><span class="n">, </span><span class="s">&quot;words&quot;</span><span class="n">, </span><span class="s">&quot;words&quot;</span><span class="n">}</span>
+<span class="n">{} </span><span class="c1">;; empty</span>
+</pre></div>
+
+
+<p>Sets and dictionaries do not specify any iteration order. You can
+however define <em>ordered dicts</em>, which do preserve the order of keys:</p>
+<div class="highlight"><pre><span class="n">[</span><span class="s">&quot;a&quot;</span><span class="kd"> =&gt; </span><span class="m">1</span><span class="n">], [</span><span class="m">0</span><span class="kd"> =&gt; </span><span class="s">&quot;zero&quot;</span><span class="n">, </span><span class="m">1</span><span class="kd"> =&gt; </span><span class="s">&quot;one&quot;</span><span class="n">]</span>
+<span class="n">[a</span><span class="kd"> = </span><span class="m">1</span><span class="n">, b</span><span class="kd"> = </span><span class="m">2</span><span class="n">]</span>
+<span class="n">[</span><span class="o">=</span><span class="n">], [</span><span class="o">=&gt;</span><span class="n">]</span>
+</pre></div>
+
+
+<p>See Python's documentation for operations on these structures.</p>
+<h2>Ad hoc labeled structs</h2>
+<p>Ever needed to pack together a few values, but did not care to make a
+specific class for it? So you put them in a dictionary, or in a list,
+but perhaps you lose some information in the process. UG's <em>ad hoc</em>
+structs can help:</p>
+<div class="highlight"><pre><span class="n">p</span><span class="kd"> = </span><span class="nl">#point</span><span class="n">[</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">]</span>
+<span class="n">print[p</span><span class="o">?</span><span class="m">0</span><span class="n">, p</span><span class="o">?</span><span class="m">1</span><span class="n">]</span>
+
+<span class="n">p</span><span class="kd"> = </span><span class="nl">#point</span><span class="n">[x</span><span class="kd"> = </span><span class="m">1</span><span class="n">, y</span><span class="kd"> = </span><span class="m">2</span><span class="n">]</span>
+<span class="n">print[p</span><span class="na">.x</span><span class="n">, p</span><span class="na">.y</span><span class="n">]</span>
+</pre></div>
+
+
+<p><code>#label</code> defines a type named "label". These types are cached as they
+are created, so each use of <code>#label</code> refers to the same type. They can
+then be initiated with any sequence of arguments or keyword arguments
+you like, keeping an internal vector for positional fields and an
+internal dictionary for the named fields.</p>
+<h2>Frozen data structures</h2>
+<p>In addition to all this, UG provides <em>immutable</em> versions of each
+structure via the <code>frz</code> keyword (which means "frozen"):</p>
+<div class="highlight"><pre><span class="n">frz [</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">]         </span><span class="c1">;; tuple (immutable list)</span>
+<span class="n">frz [a</span><span class="kd"> = </span><span class="m">1</span><span class="n">, b</span><span class="kd"> = </span><span class="m">2</span><span class="n">] </span><span class="c1">;; immutable ordered dict</span>
+<span class="n">frz {</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">}         </span><span class="c1">;; frozenset (immutable set)</span>
+<span class="n">frz {a</span><span class="kd"> = </span><span class="m">1</span><span class="n">, b</span><span class="kd"> = </span><span class="m">2</span><span class="n">} </span><span class="c1">;; immutable dict</span>
+<span class="n">frz </span><span class="nl">#point</span><span class="n">[</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">]   </span><span class="c1">;; immutable struct</span>
+</pre></div>
+
+
+<h1>Variables and assignment</h1>
+<p>Variables are declared with the <strong>=</strong> operator. They can be given an
+initial value. However, from that moment, assignment must use the
+<strong>:=</strong> operator. Assignment to properties or indices must also use
+<strong>:=</strong>.</p>
+<div class="highlight"><pre><span class="n">x</span><span class="kd"> = </span><span class="no">None</span>
+<span class="n">x</span><span class="kd"> = </span><span class="n">[</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">, </span><span class="m">3</span><span class="n">]  </span><span class="c1">;; NOT OK! x already exists</span>
+<span class="n">x</span><span class="kd"> := </span><span class="n">[</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">, </span><span class="m">3</span><span class="n">] </span><span class="c1">;; ok</span>
+<span class="n">x </span><span class="o">?</span><span class="n"> </span><span class="m">0</span><span class="kd"> = </span><span class="m">111</span><span class="n">    </span><span class="c1">;; NOT OK!</span>
+<span class="n">x </span><span class="o">?</span><span class="n"> </span><span class="m">0</span><span class="kd"> := </span><span class="m">111</span><span class="n">   </span><span class="c1">;; ok</span>
+</pre></div>
+
+
+<p>UG does not allow shadowing existing variables. If the variable <code>x</code>
+exists in scope, then <code>x = y</code> is an error (you can however define the
+same variable in multiple non overlapping scopes). (Note: if you
+<em>really</em> want to do it, you can use the <code>let</code> statement).</p>
+<p>You can declare or assign to multiple variables at once:</p>
+<div class="highlight"><pre><span class="n">[x, y, z]</span><span class="kd"> = </span><span class="n">[</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">, </span><span class="m">3</span><span class="n">]</span>
+<span class="n">[obj</span><span class="na">.attr1</span><span class="n">, obj</span><span class="na">.attr2</span><span class="n">]</span><span class="kd"> := </span><span class="n">[</span><span class="no">True</span><span class="n">, </span><span class="no">False</span><span class="n">]</span>
+</pre></div>
+
+
+<p>Mind that the priority of the comma operator is lower than that of
+assignment. In fact, its priority is <em>dead last</em>. Always.</p>
+<div class="highlight"><pre><span class="n">x, y</span><span class="kd"> = </span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n"> </span><span class="c1">;; NOT OK: parses as x, (y = 1), z</span>
+</pre></div>
+
+
+<p>The language will likely complain about <code>x</code> not being defined, so you
+can just keep in mind that this might be the cause of the error.</p>
+<h2>Typing</h2>
+<p>You can <em>type</em> variables as you declare them.</p>
+<div class="highlight"><pre><span class="n">str s</span><span class="kd"> = </span><span class="m">1</span><span class="n"> </span><span class="c1">;; NOT OK! 1 is not a string!</span>
+<span class="n">int i</span><span class="kd"> = </span><span class="m">1</span>
+<span class="n">i</span><span class="kd"> := </span><span class="m">80</span>
+<span class="n">i</span><span class="kd"> := </span><span class="s">&quot;hello&quot;</span><span class="n"> </span><span class="c1">;; NOT OK! UG remembers the type!</span>
+</pre></div>
+
+
+<p>The type checks are <strong>dynamic</strong>: they are done at runtime and not at
+compile time. While later optimizers may take advantage of the type
+annotations, for the time being, mind that they will slow your code
+down rather than speed it up. They will however help make your code
+safer, more robust, and will give you nicer errors.</p>
+<h1>Indent rules</h1>
+<p>Like Python, UG has significant indent. However, it can be used much
+more generally than in Python. Indent and line breaks obey two <em>very
+simple</em> rules:</p>
+<ol>
+<li><strong>Any</strong> indented block is equivalent to putting <strong>(</strong> at the end of
+   the line right before it, and <strong>)</strong> at the end of its last
+   line.<ul>
+<li><strong>Unless</strong> it is within any type of brackets. Inside <code>()</code>,
+   <code>[]</code> and <code>{}</code> all indent is <em>ignored</em> (so it's even simpler).</li>
+</ul>
+</li>
+<li>There is an implicit <strong>comma</strong> (<strong>,</strong>) at the end of <strong>every</strong> line,
+   unless it is continuated on the next line, or if the comma would come
+   right after an opening bracket or right before a closing bracket.</li>
+</ol>
+<p>Therefore, the following:</p>
+<div class="highlight"><pre><span class="k">if</span><span class="n"> something</span><span class="o">:</span>
+<span class="n">    f[]</span>
+<span class="n">    g</span><span class="na">.bla</span><span class="n">[</span><span class="s">&quot;bla&quot;</span><span class="n">, </span><span class="s">&quot;bla&quot;</span><span class="n">]</span>
+<span class="k">else</span><span class="o">:</span>
+<span class="n">    </span><span class="m">12345</span>
+</pre></div>
+
+
+<p>Is equivalent to:</p>
+<div class="highlight"><pre><span class="k">if</span><span class="n"> something</span><span class="o">:</span><span class="n"> (</span>
+<span class="n">    f[] ,</span>
+<span class="n">    g</span><span class="na">.bla</span><span class="n">[</span><span class="s">&quot;bla&quot;</span><span class="n">, </span><span class="s">&quot;bla&quot;</span><span class="n">] ) ,</span>
+<span class="k">else</span><span class="o">:</span><span class="n"> (</span>
+<span class="n">    </span><span class="m">12345</span><span class="n"> ) ,</span>
+</pre></div>
+
+
+<p>Using these rules, any UG code can be rewritten as a one-liner, though
+doing so is not recommended.</p>
+<h1>Conditionals</h1>
+<p>The <code>if</code> statement looks the same in UG as it does in Python, the only
+difference being that parentheses are required around the condition if
+it involves an operator (comparison, <code>and</code>, etc.)</p>
+<div class="highlight"><pre><span class="k">if</span><span class="n"> (x </span><span class="o">&lt;</span><span class="n"> </span><span class="m">0</span><span class="n">)</span><span class="o">:</span>
+<span class="n">    print[</span><span class="s">&quot;negative&quot;</span><span class="n">]</span>
+<span class="k">elif</span><span class="n"> (x </span><span class="o">&gt;</span><span class="n"> </span><span class="m">0</span><span class="n">)</span><span class="o">:</span>
+<span class="n">    print[</span><span class="s">&quot;positive&quot;</span><span class="n">]</span>
+<span class="k">else</span><span class="o">:</span>
+<span class="n">    print[</span><span class="s">&quot;zero&quot;</span><span class="n">]</span>
+</pre></div>
+
+
+<p>There are a few ways to write a conditional expression:</p>
+<div class="highlight"><pre><span class="n">result</span><span class="kd"> =</span>
+<span class="n">    </span><span class="k">if</span><span class="n"> (x </span><span class="o">&lt;</span><span class="n"> </span><span class="m">0</span><span class="n">)</span><span class="o">:</span><span class="n"> </span><span class="s">&quot;negative&quot;</span>
+<span class="n">    </span><span class="k">else</span><span class="o">:</span><span class="n"> </span><span class="s">&quot;nonnegative&quot;</span>
+<span class="n">print[result]</span>
+<span class="n">print[(</span><span class="k">if</span><span class="n"> (x </span><span class="o">&lt;</span><span class="n"> </span><span class="m">0</span><span class="n">)</span><span class="o">:</span><span class="n"> </span><span class="s">&quot;negative&quot;</span><span class="n">, </span><span class="k">else</span><span class="o">:</span><span class="n"> </span><span class="s">&quot;nonnegative&quot;</span><span class="n">)]</span>
+<span class="n">print[</span><span class="k">if</span><span class="n">[x </span><span class="o">&lt;</span><span class="n"> </span><span class="m">0</span><span class="n">, </span><span class="s">&quot;negative&quot;</span><span class="n">, </span><span class="s">&quot;nonnegative&quot;</span><span class="n">]]</span>
+</pre></div>
+
+
+<p>Be careful, though: the first way will not work if you put <code>if</code> on the
+same line as <code>result =</code>. The second way requires the parentheses,
+because <code>if/else</code> must be comma-separated in a <code>(...)</code> block. The
+third way will always work.</p>
+<h1>Looping</h1>
+<p>While loops work like in Python. Parentheses are required around the
+condition if it involves an operator (comparison, <code>and</code>, etc.)</p>
+<div class="highlight"><pre><span class="n">i</span><span class="kd"> = </span><span class="m">10</span>
+<span class="k">while</span><span class="n"> (i </span><span class="o">&gt;</span><span class="n"> </span><span class="m">0</span><span class="n">)</span><span class="o">:</span>
+<span class="n">    print[i]</span>
+<span class="n">    i</span><span class="kd"> := </span><span class="n">i </span><span class="o">-</span><span class="n"> </span><span class="m">1</span>
+<span class="n">print[</span><span class="s">&quot;Blast off!&quot;</span><span class="n">]</span>
+</pre></div>
+
+
+<h1>Iteration</h1>
+<p>There are two iteration operators: <code>each</code> and <code>map</code>. <code>each</code> executes a
+function on every element of a collection, like Python's <code>for</code> loop:</p>
+<div class="highlight"><pre><span class="n">people</span><span class="kd"> = </span><span class="s">&quot;Balthazar Peter Julie Olaf Eve Hildegarde&quot;</span><span class="na">.split</span><span class="n">[]</span>
+<span class="n">people </span><span class="k">each</span><span class="n"> person</span><span class="kd"> -&gt;</span>
+<span class="n">    print[</span><span class="s">&quot;Hello,&quot;</span><span class="n">, person </span><span class="o">+</span><span class="n"> </span><span class="s">&quot;!&quot;</span><span class="n">]</span>
+</pre></div>
+
+
+<p>You can deconstruct the argument, and even use pattern matching on it:</p>
+<div class="highlight"><pre><span class="n">enumerate[people] </span><span class="k">each</span>
+<span class="n">    [</span><span class="m">0</span><span class="n">, person]</span><span class="kd"> -&gt; </span><span class="n">print[person, </span><span class="s">&quot;is 1st&quot;</span><span class="n">]</span>
+<span class="n">    [</span><span class="m">1</span><span class="n">, person]</span><span class="kd"> -&gt; </span><span class="n">print[person, </span><span class="s">&quot;is 2nd&quot;</span><span class="n">]</span>
+<span class="n">    [</span><span class="m">2</span><span class="n">, person]</span><span class="kd"> -&gt; </span><span class="n">print[person, </span><span class="s">&quot;is 3rd&quot;</span><span class="n">]</span>
+<span class="n">    [n, person] </span><span class="k">when</span><span class="n"> (n </span><span class="o">&lt;</span><span class="n"> </span><span class="m">20</span><span class="n">)</span><span class="kd"> -&gt;</span>
+<span class="n">        print[person, </span><span class="s">&quot;is&quot;</span><span class="n">, str[i] </span><span class="o">+</span><span class="n"> </span><span class="s">&quot;th&quot;</span><span class="n">]</span>
+<span class="n">    _</span><span class="kd"> -&gt; </span><span class="n">ValueError[</span><span class="s">&quot;I can&#39;t count that high!&quot;</span><span class="n">]</span>
+</pre></div>
+
+
+<p><code>map</code> returns a <em>generator</em>: it does not do anything until it is asked
+to. You can call the <code>list</code> function on it to get a list of results.</p>
+<div class="highlight"><pre><span class="n">numbers</span><span class="kd"> = </span><span class="m">1</span><span class="n"> </span><span class="k">to</span><span class="n"> </span><span class="m">100</span>
+<span class="n">squares</span><span class="kd"> = </span><span class="n">list</span><span class="o">!</span><span class="n"> numbers </span><span class="k">map</span><span class="n"> i</span><span class="kd"> -&gt; </span><span class="n">i </span><span class="o">**</span><span class="n"> </span><span class="m">2</span>
+</pre></div>
+
+
+<p>Besides the fact it yields results only on demand, syntactically,
+<code>map</code> works just like <code>each</code>.</p>
+<p>The right hand side of <code>each</code> or <code>map</code> can be a function, but there is
+a caveat: most functions with a single argument take a <em>tuple</em> of
+length one. To illustrate:</p>
+<div class="highlight"><pre><span class="n">[</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">, </span><span class="m">3</span><span class="n">] </span><span class="k">each</span><span class="n"> print       </span><span class="c1">;; FAILS: print 1, print 2, etc.</span>
+<span class="n">[[</span><span class="m">1</span><span class="n">], [</span><span class="m">2</span><span class="n">], [</span><span class="m">3</span><span class="n">]] </span><span class="k">each</span><span class="n"> print </span><span class="c1">;; WORKS: print[1], print[2], etc.</span>
+</pre></div>
+
+
+<p>To solve this, you can use <code>wrap</code> as an intermediary step:</p>
+<div class="highlight"><pre><span class="n">[</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">, </span><span class="m">3</span><span class="n">] </span><span class="k">map</span><span class="n"> wrap </span><span class="k">each</span><span class="n"> print </span><span class="c1">;; WORKS!</span>
+</pre></div>
+
+
+<h1>Pattern matching</h1>
+<p>The <code>match</code> construct implements a powerful pattern matching language.
+You can use it to implement a simple calculator, for instance:</p>
+<div class="highlight"><pre><span class="n">calc</span><span class="kd"> = </span><span class="n">[instruction]</span><span class="kd"> -&gt;</span>
+<span class="n">    </span><span class="k">match</span><span class="n"> instruction</span><span class="o">:</span>
+<span class="n">        int x</span><span class="kd"> -&gt; </span><span class="n">x</span>
+<span class="n">        float x</span><span class="kd"> -&gt; </span><span class="n">x</span>
+<span class="n">        </span><span class="nl">#plus</span><span class="n">[x]</span><span class="kd"> -&gt; </span><span class="o">+</span><span class="n">calc[x]</span>
+<span class="n">        </span><span class="nl">#plus</span><span class="n">[x, y]</span><span class="kd"> -&gt; </span><span class="n">calc[x] </span><span class="o">+</span><span class="n"> calc[y]</span>
+<span class="n">        </span><span class="nl">#minus</span><span class="n">[x]</span><span class="kd"> -&gt; </span><span class="o">-</span><span class="n">calc[x]</span>
+<span class="n">        </span><span class="nl">#minus</span><span class="n">[x, y]</span><span class="kd"> -&gt; </span><span class="n">calc[x] </span><span class="o">-</span><span class="n"> calc[y]</span>
+<span class="n">        </span><span class="nl">#times</span><span class="n">[x, y]</span><span class="kd"> -&gt; </span><span class="n">calc[x] </span><span class="o">*</span><span class="n"> calc[y]</span>
+<span class="n">        </span><span class="nl">#div</span><span class="n">[x, y]</span><span class="kd"> -&gt; </span><span class="n">calc[x] </span><span class="o">/</span><span class="n"> calc[y]</span>
+<span class="n">        </span><span class="nl">#mod</span><span class="n">[x, y]</span><span class="kd"> -&gt; </span><span class="n">calc[x] </span><span class="k">mod</span><span class="n"> calc[y]</span>
+<span class="n">        _</span><span class="kd"> -&gt; </span><span class="k">raise</span><span class="n"> TypeError[</span><span class="s">&quot;Unknown instruction&quot;</span><span class="n">, instruction]</span>
+
+<span class="n">print </span><span class="o">!</span><span class="n"> calc[</span><span class="nl">#plus</span><span class="n">[</span><span class="nl">#times</span><span class="n">[</span><span class="m">5</span><span class="n">, </span><span class="m">20</span><span class="n">], </span><span class="nl">#div</span><span class="n">[</span><span class="m">77</span><span class="n">, </span><span class="m">7</span><span class="n">]]]</span>
+</pre></div>
+
+
+<h1>Calling functions</h1>
+<p>A function is called simply by putting the function and its argument
+next to each other. Usually, you want to give the function a <em>list</em> of
+arguments, so you just write a list next to it, using the list syntax.
+Sometimes, you want to give it keyword arguments, so you write a
+dictionary. And then sometimes you want to do both, which is fine too.</p>
+<div class="highlight"><pre><span class="n">f[]             </span><span class="c1">;; Calling f with no arguments</span>
+<span class="n">f[x]            </span><span class="c1">;; Calling f with one argument</span>
+<span class="n">f{a</span><span class="kd"> = </span><span class="n">x, b</span><span class="kd"> = </span><span class="n">y} </span><span class="c1">;; Calling f with two keyword arguments</span>
+<span class="n">f[a</span><span class="kd"> = </span><span class="n">x, b</span><span class="kd"> = </span><span class="n">y] </span><span class="c1">;; That&#39;s fine too</span>
+<span class="n">f[x, y, a</span><span class="kd"> = </span><span class="n">z]  </span><span class="c1">;; Calling f with two positional args and a keyword arg</span>
+</pre></div>
+
+
+<p>But! You can also "call" a function on something that's neither a list
+nor a dict. For instance, if you want to get an attribute, perhaps you
+could simply call the function on the attribute's name!</p>
+<div class="highlight"><pre><span class="n">f </span><span class="s">&quot;x&quot;</span><span class="n">           </span><span class="c1">;; Calling f with a *string*</span>
+<span class="n">f</span><span class="na">.x</span><span class="n">             </span><span class="c1">;; Exactly the same as the previous</span>
+
+<span class="n">f (</span><span class="o">?</span><span class="m">0</span><span class="n">)          </span><span class="c1">;; Calling f on the *index* 0</span>
+<span class="n">f</span><span class="o">?</span><span class="m">0</span><span class="n">             </span><span class="c1">;; Exactly the same as the previous</span>
+</pre></div>
+
+
+<p>UG is quite free form. For instance, you can very well do this:</p>
+<div class="highlight"><pre><span class="n">obj</span><span class="kd"> = </span><span class="s">&quot;hello&quot;</span>
+<span class="n">method</span><span class="kd"> = </span><span class="na">.replace</span>
+<span class="n">arguments</span><span class="kd"> = </span><span class="n">[</span><span class="s">&quot;e&quot;</span><span class="n">, </span><span class="s">&quot;u&quot;</span><span class="n">]</span>
+<span class="n">print[obj method arguments]</span>
+</pre></div>
+
+
+<p>In Python, the same thing would have to be written much less elegantly:</p>
+<div class="highlight"><pre><span class="n">obj</span> <span class="o">=</span> <span class="s">&quot;hello&quot;</span>
+<span class="n">method</span> <span class="o">=</span> <span class="s">&quot;replace&quot;</span>
+<span class="n">arguments</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;e&quot;</span><span class="p">,</span> <span class="s">&quot;u&quot;</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">method</span><span class="p">)(</span><span class="o">*</span><span class="n">arguments</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Lastly, you can use the <code>!</code> operator to transform what follows into a
+list. For instance:</p>
+<div class="highlight"><pre><span class="n">print</span><span class="o">!</span><span class="n"> </span><span class="s">&quot;hello&quot;</span><span class="n">    </span><span class="c1">;; instead of print[&quot;hello&quot;]</span>
+<span class="s">&quot;HELLO&quot;</span><span class="na">.lower</span><span class="o">!</span><span class="n">    </span><span class="c1">;; instead of &quot;HELLO&quot;.lower[]</span>
+</pre></div>
+
+
+<p><code>!</code> has low priority and is right associative:</p>
+<div class="highlight"><pre><span class="n">list</span><span class="o">!</span><span class="n"> reversed</span><span class="o">!</span><span class="n"> sorted</span><span class="o">!</span><span class="n"> [</span><span class="m">7</span><span class="n">, </span><span class="m">3</span><span class="n">, </span><span class="m">1</span><span class="n">, </span><span class="m">7</span><span class="n">, </span><span class="m">99</span><span class="n">, </span><span class="m">12</span><span class="n">]</span>
+<span class="c1">;; is equivalent to:</span>
+<span class="n">list[reversed[sorted[[</span><span class="m">7</span><span class="n">, </span><span class="m">3</span><span class="n">, </span><span class="m">1</span><span class="n">, </span><span class="m">7</span><span class="n">, </span><span class="m">99</span><span class="n">, </span><span class="m">12</span><span class="n">]]]]</span>
+</pre></div>
+
+
+<p>If there is an indented block after <code>!</code>, it will be interpreted as a
+list:</p>
+<div class="highlight"><pre><span class="n">print</span><span class="o">!</span>
+<span class="n">    </span><span class="s">&quot;hello,&quot;</span>
+<span class="n">    </span><span class="s">&quot;friend&quot;</span>
+</pre></div>
+
+
+<h1>Defining functions</h1>
+<p>Functions are defined using the <code>-&gt;</code> operator. On the left: a
+pattern. On the right: an expression. Usually the pattern will just
+mirror the form of the expected arguments:</p>
+<div class="highlight"><pre><span class="n">add</span><span class="kd"> = </span><span class="n">[x, y]</span><span class="kd"> -&gt; </span><span class="n">x </span><span class="o">+</span><span class="n"> y</span>
+<span class="n">print</span><span class="o">!</span><span class="n"> add[</span><span class="m">11</span><span class="n">, </span><span class="m">22</span><span class="n">]</span>
+</pre></div>
+
+
+<p>Keyword arguments must be declared as such using <code>=&gt;</code></p>
+<div class="highlight"><pre><span class="n">div</span><span class="kd"> = </span><span class="n">[</span><span class="o">=&gt;</span><span class="n"> num,</span><span class="kd"> =&gt; </span><span class="n">denum]</span><span class="kd"> -&gt; </span><span class="n">num </span><span class="o">/</span><span class="n"> denum</span>
+<span class="n">print</span><span class="o">!</span><span class="n"> div[num</span><span class="kd"> = </span><span class="m">1</span><span class="n">, denum</span><span class="kd"> = </span><span class="m">2</span><span class="n">]</span>
+</pre></div>
+
+
+<p>Default values for arguments with <code>=</code></p>
+<div class="highlight"><pre><span class="n">increment</span><span class="kd"> = </span><span class="n">[x, inc</span><span class="kd"> = </span><span class="m">1</span><span class="n">]</span><span class="kd"> -&gt; </span><span class="n">x </span><span class="o">+</span><span class="n"> inc</span>
+<span class="n">print</span><span class="o">!</span>
+<span class="n">    increment[</span><span class="m">10</span><span class="n">]</span>
+<span class="n">    increment[</span><span class="m">10</span><span class="n">, </span><span class="m">2</span><span class="n">]</span>
+</pre></div>
+
+
+<p>It is possible to define <em>multiple clauses</em>, with one arrow per
+clause. To illustrate, consider this recursive implementation of
+fibonacci numbers:</p>
+<div class="highlight"><pre><span class="n">fib</span><span class="kd"> =</span>
+<span class="n">    [</span><span class="m">0</span><span class="n">]</span><span class="kd"> -&gt; </span><span class="m">0</span>
+<span class="n">    [</span><span class="m">1</span><span class="n">]</span><span class="kd"> -&gt; </span><span class="m">1</span>
+<span class="n">    [n] </span><span class="k">when</span><span class="n"> (n </span><span class="o">&gt;</span><span class="n"> </span><span class="m">1</span><span class="n">)</span><span class="kd"> -&gt;</span>
+<span class="n">        fib[n </span><span class="o">-</span><span class="n"> </span><span class="m">1</span><span class="n">] </span><span class="o">+</span><span class="n"> fib[n </span><span class="o">-</span><span class="n"> </span><span class="m">2</span><span class="n">]</span>
+</pre></div>
+
+
+<p>In fact, any legal clause for <code>match</code> is a legal clause for a
+function. The calculator example seen earlier can thus be rewritten
+without <code>match</code>:</p>
+<div class="highlight"><pre><span class="n">calc</span><span class="kd"> =</span>
+<span class="n">    [int x]</span><span class="kd"> -&gt; </span><span class="n">x</span>
+<span class="n">    [float x]</span><span class="kd"> -&gt; </span><span class="n">x</span>
+<span class="n">    [</span><span class="nl">#plus</span><span class="n">[x]]</span><span class="kd"> -&gt; </span><span class="o">+</span><span class="n">calc[x]</span>
+<span class="n">    [</span><span class="nl">#plus</span><span class="n">[x, y]]</span><span class="kd"> -&gt; </span><span class="n">calc[x] </span><span class="o">+</span><span class="n"> calc[y]</span>
+<span class="n">    [</span><span class="nl">#minus</span><span class="n">[x]]</span><span class="kd"> -&gt; </span><span class="o">-</span><span class="n">calc[x]</span>
+<span class="n">    [</span><span class="nl">#minus</span><span class="n">[x, y]]</span><span class="kd"> -&gt; </span><span class="n">calc[x] </span><span class="o">-</span><span class="n"> calc[y]</span>
+<span class="n">    [</span><span class="nl">#times</span><span class="n">[x, y]]</span><span class="kd"> -&gt; </span><span class="n">calc[x] </span><span class="o">*</span><span class="n"> calc[y]</span>
+<span class="n">    [</span><span class="nl">#div</span><span class="n">[x, y]]</span><span class="kd"> -&gt; </span><span class="n">calc[x] </span><span class="o">/</span><span class="n"> calc[y]</span>
+<span class="n">    [_]</span><span class="kd"> -&gt; </span><span class="k">raise</span><span class="n"> TypeError[</span><span class="s">&quot;Unknown instruction&quot;</span><span class="n">, instruction]</span>
+</pre></div>
+
+
+<h1>Exceptions</h1>
+<p>Exceptions are caught with the <code>!!</code> operator. On the left is the
+expression that might throw an exception. On the right is either an
+expression to evaluate if there is an error or a function.</p>
+<p>For instance, this tries to fetch the key "Julie" from a dictionary,
+but if there is no such key, it will return <code>None</code> instead:</p>
+<div class="highlight"><pre><span class="n">d</span><span class="kd"> = </span><span class="n">{Paul</span><span class="kd"> = </span><span class="s">&quot;paul.txt&quot;</span><span class="n">, Jeanne</span><span class="kd"> = </span><span class="s">&quot;jeanne.txt&quot;</span><span class="n">}</span>
+<span class="n">julie</span><span class="kd"> = </span><span class="n">d</span><span class="o">?</span><span class="na">.Julie</span><span class="kd"> !! </span><span class="no">None</span>
+</pre></div>
+
+
+<p>If you want to print or manipulate the error, you can declare a
+function that will be given the error as an argument:</p>
+<div class="highlight"><pre><span class="n">julie</span><span class="kd"> = </span><span class="n">d</span><span class="o">?</span><span class="na">.Julie</span><span class="kd"> !! </span><span class="n">e</span><span class="kd"> -&gt; </span><span class="n">(print[e], </span><span class="no">None</span><span class="n">)</span>
+</pre></div>
+
+
+<p>Perhaps more than one thing could go wrong! Just like you can define
+functions with multiple clauses, you can define several clauses for
+your exception handler, one for every kind of exception:</p>
+<div class="highlight"><pre><span class="n">open[d</span><span class="o">?</span><span class="na">.Julie</span><span class="n">]</span><span class="kd"> !!</span>
+<span class="n">    KeyError e</span><span class="kd"> -&gt;</span>
+<span class="n">        print[</span><span class="s">&quot;Julie not found.&quot;</span><span class="n">]</span>
+<span class="n">    IOError e</span><span class="kd"> -&gt;</span>
+<span class="n">        print[</span><span class="s">&quot;File not found.&quot;</span><span class="n">]</span>
+</pre></div>
+
+
+<p>There are two kinds of special clauses you can add. The <code>success</code>
+clause will be executed if there is no error, with the result of the
+expression as its value (akin to the <code>else</code> clause in Python's
+<code>try/except</code>). The <code>finally</code> clause will always be executed at the
+end, no matter what happens, but its return value is irrelevant.</p>
+<div class="highlight"><pre><span class="c1">;; Prints &quot;finally&quot;, then &quot;abc&quot;</span>
+<span class="n">print</span><span class="o">!</span><span class="n"> </span><span class="s">&quot;a&quot;</span><span class="n"> </span><span class="o">+</span><span class="n"> </span><span class="s">&quot;b&quot;</span><span class="kd"> !!</span>
+<span class="n">    e</span><span class="kd"> -&gt; </span><span class="no">None</span>
+<span class="n">    success v</span><span class="kd"> -&gt; </span><span class="n">v </span><span class="o">+</span><span class="n"> </span><span class="s">&quot;c&quot;</span>
+<span class="n">    finally</span><span class="kd"> -&gt; </span><span class="n">print[</span><span class="s">&quot;finally&quot;</span><span class="n">]</span>
+</pre></div>
+</section>
+        <section id="extras" class="body">
+                        <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                                                    <li><a href="https://github.com/breuleux/ug">Unholy Grail</a></li>
+                                                    <li><a href="http://python.org/">Python.org</a></li>
+                                                </ul>
+                </div><!-- /.blogroll -->
+                        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
