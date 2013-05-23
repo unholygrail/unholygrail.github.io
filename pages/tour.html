@@ -21,7 +21,165 @@
 <section id="content" class="body">    
     <h1 class="entry-title">Tour</h1>
         
-        <h1>Literals and special values</h1>
+        <h1 id="contents">Contents</h1>
+<div class="toc">
+<ul>
+<li><a href="#contents">Contents</a></li>
+<li><a href="#ug-markup">UG Markup</a></li>
+<li><a href="#literals-and-special-values">Literals and special values</a></li>
+<li><a href="#data-structures">Data structures</a><ul>
+<li><a href="#ad-hoc-labeled-structs">Ad hoc labeled structs</a></li>
+<li><a href="#frozen-data-structures">Frozen data structures</a></li>
+</ul>
+</li>
+<li><a href="#variables-and-assignment">Variables and assignment</a><ul>
+<li><a href="#typing">Typing</a></li>
+</ul>
+</li>
+<li><a href="#indent-rules">Indent rules</a></li>
+<li><a href="#conditionals">Conditionals</a></li>
+<li><a href="#looping">Looping</a></li>
+<li><a href="#iteration">Iteration</a><ul>
+<li><a href="#break-and-continue">Break and continue</a></li>
+</ul>
+</li>
+<li><a href="#pattern-matching">Pattern matching</a></li>
+<li><a href="#calling-functions">Calling functions</a></li>
+<li><a href="#defining-functions">Defining functions</a><ul>
+<li><a href="#pattern-matching_1">Pattern matching</a></li>
+</ul>
+</li>
+<li><a href="#exceptions">Exceptions</a></li>
+</ul>
+</div>
+<h1 id="ug-markup">UG Markup</h1>
+<p>Unholy Grail lets you write Unicode characters using a simple ASCII
+markup. The markup can be used to define and use Unicode variables,
+Unicode operators and -- of course -- Unicode strings without having
+to worry about how to type them.</p>
+<p>First, a limited number of specific character sequences translate to
+the characters they look like:</p>
+<table class=symbols>
+
+<p><tr>
+    <td class=encoded><code>&lt;&lt;</code></td>
+    <td class=decoded><code>«</code></td>
+    <td class=symname>open guillemet</td>
+    <td class=encoded><code>&gt;&gt;</code></td>
+    <td class=decoded><code>»</code></td>
+    <td class=symname>close guillemet</td>
+  </tr></p>
+<p><tr>
+    <td class=encoded><code>&lt;-</code></td>
+    <td class=decoded><code>←</code></td>
+    <td class=symname>left arrow</td>
+    <td class=encoded><code>-&gt;</code></td>
+    <td class=decoded><code>→</code></td>
+    <td class=symname>right arrow</td>
+  </tr></p>
+<p><tr>
+    <td class=encoded><code>&lt;=</code></td>
+    <td class=decoded><code>⇐</code></td>
+    <td class=symname>left double arrow</td>
+    <td class=encoded><code>=&gt;</code></td>
+    <td class=decoded><code>⇒</code></td>
+    <td class=symname>right double arrow</td>
+  </tr></p>
+<p><tr>
+    <td class=encoded><code>&gt;=</code></td>
+    <td class=decoded><code>≥</code></td>
+    <td class=symname>greater than</td>
+    <td class="encoded lt"><code>=&lt;</code></td>
+    <td class="decoded lt"><code>≤</code></td>
+    <td class="symname lt">less than</td>
+  </tr></p>
+<p><tr>
+    <td class=encoded><code>&lt;&gt;</code></td>
+    <td class=decoded><code>♦</code></td>
+    <td class=symname>diamond</td>
+    <td class=encoded><code>/=</code></td>
+    <td class=decoded><code>≠</code></td>
+    <td class=symname>not equal</td>
+  </tr></p>
+<p><tr>
+    <td class=encoded><code>[|</code></td>
+    <td class=decoded><code>⟦</code></td>
+    <td class=symname>left double square bracket</td>
+    <td class=encoded><code>|]</code></td>
+    <td class=decoded><code>⟧</code></td>
+    <td class=symname>right double square bracket</td>
+  </tr></p>
+<p><tr>
+    <td class=encoded><code>{|</code></td>
+    <td class=decoded><code>⦃</code></td>
+    <td class=symname>left double curly bracket</td>
+    <td class=encoded><code>|}</code></td>
+    <td class=decoded><code>⦄</code></td>
+    <td class=symname>right double curly bracket</td>
+  </tr></p>
+<p><tr>
+    <td class=encoded><code>&lt;|</code></td>
+    <td class=decoded><code>◀</code></td>
+    <td class=symname>left triangle</td>
+    <td class=encoded><code>|&gt;</code></td>
+    <td class=decoded><code>▶</code></td>
+    <td class=symname>right triangle</td>
+  </tr></p>
+<p><tr>
+    <td class=encoded><code>``</code></td>
+    <td class=decoded><code>`</code></td>
+    <td class=symname>backtick</td>
+    <td class=encoded><code>`br`</code></td>
+    <td class=decoded><code>↲</code></td>
+    <td class=symname>newline</td>
+  </tr></p>
+</table>
+
+<p>In a nutshell, suppose you have the following line of code:</p>
+<div class="highlight"><pre><span class="n">print[</span><span class="s">&quot;x &gt;= 0 and x =&lt; 10&quot;</span><span class="n">]</span>
+</pre></div>
+
+
+<p>When executed, it will print the following to the terminal:</p>
+<div class="highlight"><pre>x ≥ 0 and x ≤ 10
+</pre></div>
+
+
+<p>As indicated in the table, <code>&gt;=</code> turned into <code>≥</code> and <code>=&lt;</code> turned into
+<code>≤</code>. If you want to actually print out "&gt;=" or "=&lt;", you can <em>escape</em>
+one of the characters like this:</p>
+<div class="highlight"><pre><span class="n">print[</span><span class="s">&quot;x `&gt;`= 0 and x `=`&lt; 10&quot;</span><span class="n">]</span>
+<span class="c1">;; x &gt;= 0 and x =&lt; 10</span>
+</pre></div>
+
+
+<p>Besides the special characters listed in the table, you can write any
+Unicode character by putting its name between backticks. For instance:</p>
+<div class="highlight"><pre><span class="n">print[</span><span class="s">&quot;`alpha` `in` `beta``gamma`&quot;</span><span class="n">]</span>
+<span class="c1">;; α ∈ βγ</span>
+</pre></div>
+
+
+<p>The names available are the same as the <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML symbol
+entities</a>. You can also
+specify a character by decimal (<code>number</code>) or hexadecimal number
+(<code>^number</code>).</p>
+<div class="highlight"><pre><span class="n">print[</span><span class="s">&quot;`65` `^2194` `66`&quot;</span><span class="n">]</span>
+<span class="c1">;; A ↔ B</span>
+</pre></div>
+
+
+<p>If you had to remember only one thing, though, it would be that
+newlines, in strings, are encoded as <code>`br`</code>. <code>\n</code> <em>will
+not work</em>. In fact, <code>\</code> escapes nothing at all in Unholy Grail (escape
+<code>"</code> by doubling it).</p>
+<div class="highlight"><pre><span class="n">print[</span><span class="s">&quot;line1`br`line2\na&quot;&quot;bc\&quot;</span><span class="n">]</span>
+<span class="c1">;; line1</span>
+<span class="c1">;; line2\na&quot;bc\</span>
+</pre></div>
+
+
+<h1 id="literals-and-special-values">Literals and special values</h1>
 <div class="highlight"><pre><span class="m">0</span><span class="n">, </span><span class="m">1</span><span class="n">, </span><span class="m">2613</span><span class="n">, </span><span class="m">100000</span><span class="n">, </span><span class="m">100_000</span><span class="n">          </span><span class="c1">;; Base 10 integers</span>
 <span class="m">9.999</span><span class="n">, </span><span class="m">4e10</span><span class="n">, .</span><span class="m">5</span><span class="n">, </span><span class="m">5</span><span class="n">.                  </span><span class="c1">;; Base 10 floats</span>
 <span class="m">2r1_100_100</span><span class="n">, </span><span class="m">3r10_201</span><span class="n">, </span><span class="m">16r64</span><span class="n">, </span><span class="m">30r3A</span><span class="n">  </span><span class="c1">;; Other bases integers</span>
@@ -30,13 +188,16 @@
 <span class="s">&quot;these&quot;</span><span class="n">, </span><span class="s">&quot;are&quot;</span><span class="n">, </span><span class="s">&quot;strings&quot;</span>
 <span class="na">.these</span><span class="n">, </span><span class="na">.are</span><span class="n">, </span><span class="na">.strings</span><span class="n">, </span><span class="na">.too</span>
 
+<span class="s">&quot;He came in and said: &quot;&quot;I farted&quot;&quot;&quot;</span><span class="n">  </span><span class="c1">;; &quot; is escaped by doubling it</span>
+<span class="s">&quot;&quot;&quot;&quot;</span><span class="n">                                 </span><span class="c1">;; so this is the &quot; character</span>
+
 <span class="no">True</span><span class="n">, </span><span class="no">False</span><span class="n">, </span><span class="no">None</span>
 <span class="no">Void</span><span class="n">, ()                             </span><span class="c1">;; Void == ()</span>
 </pre></div>
 
 
-<h1>Data structures</h1>
-<p>The basic data types in UG are <em>lists</em>:</p>
+<h1 id="data-structures">Data structures</h1>
+<p>Basic data structures in UG are <em>lists</em>:</p>
 <div class="highlight"><pre><span class="n">[], [</span><span class="m">1</span><span class="n">], [</span><span class="s">&quot;a&quot;</span><span class="n">, </span><span class="s">&quot;b&quot;</span><span class="n">, </span><span class="s">&quot;c&quot;</span><span class="n">]</span>
 </pre></div>
 
@@ -75,7 +236,7 @@ however define <em>ordered dicts</em>, which do preserve the order of keys:</p>
 
 
 <p>See Python's documentation for operations on these structures.</p>
-<h2>Ad hoc labeled structs</h2>
+<h2 id="ad-hoc-labeled-structs">Ad hoc labeled structs</h2>
 <p>Ever needed to pack together a few values, but did not care to make a
 specific class for it? So you put them in a dictionary, or in a list,
 but perhaps you lose some information in the process. UG's <em>ad hoc</em>
@@ -93,7 +254,7 @@ are created, so each use of <code>#label</code> refers to the same type. They ca
 then be initiated with any sequence of arguments or keyword arguments
 you like, keeping an internal vector for positional fields and an
 internal dictionary for the named fields.</p>
-<h2>Frozen data structures</h2>
+<h2 id="frozen-data-structures">Frozen data structures</h2>
 <p>In addition to all this, UG provides <em>immutable</em> versions of each
 structure via the <code>frz</code> keyword (which means "frozen"):</p>
 <div class="highlight"><pre><span class="n">frz [</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">]         </span><span class="c1">;; tuple (immutable list)</span>
@@ -104,7 +265,7 @@ structure via the <code>frz</code> keyword (which means "frozen"):</p>
 </pre></div>
 
 
-<h1>Variables and assignment</h1>
+<h1 id="variables-and-assignment">Variables and assignment</h1>
 <p>Variables are declared with the <strong>=</strong> operator. They can be given an
 initial value. However, from that moment, assignment must use the
 <strong>:=</strong> operator. Assignment to properties or indices must also use
@@ -117,10 +278,8 @@ initial value. However, from that moment, assignment must use the
 </pre></div>
 
 
-<p>UG does not allow shadowing existing variables. If the variable <code>x</code>
-exists in scope, then <code>x = y</code> is an error (you can however define the
-same variable in multiple non overlapping scopes). (Note: if you
-<em>really</em> want to do it, you can use the <code>let</code> statement).</p>
+<p>UG does not allow shadowing existing variables*. If the variable <code>x</code>
+exists in scope, then <code>x = y</code> is an error. (*Unless you use <code>let</code>).</p>
 <p>You can declare or assign to multiple variables at once:</p>
 <div class="highlight"><pre><span class="n">[x, y, z]</span><span class="kd"> = </span><span class="n">[</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">, </span><span class="m">3</span><span class="n">]</span>
 <span class="n">[obj</span><span class="na">.attr1</span><span class="n">, obj</span><span class="na">.attr2</span><span class="n">]</span><span class="kd"> := </span><span class="n">[</span><span class="no">True</span><span class="n">, </span><span class="no">False</span><span class="n">]</span>
@@ -135,7 +294,7 @@ assignment. In fact, its priority is <em>dead last</em>. Always.</p>
 
 <p>The language will likely complain about <code>x</code> not being defined, so you
 can just keep in mind that this might be the cause of the error.</p>
-<h2>Typing</h2>
+<h2 id="typing">Typing</h2>
 <p>You can <em>type</em> variables as you declare them.</p>
 <div class="highlight"><pre><span class="n">str s</span><span class="kd"> = </span><span class="m">1</span><span class="n"> </span><span class="c1">;; NOT OK! 1 is not a string!</span>
 <span class="n">int i</span><span class="kd"> = </span><span class="m">1</span>
@@ -149,7 +308,7 @@ compile time. While later optimizers may take advantage of the type
 annotations, for the time being, mind that they will slow your code
 down rather than speed it up. They will however help make your code
 safer, more robust, and will give you nicer errors.</p>
-<h1>Indent rules</h1>
+<h1 id="indent-rules">Indent rules</h1>
 <p>Like Python, UG has significant indent. However, it can be used much
 more generally than in Python. Indent and line breaks obey two <em>very
 simple</em> rules:</p>
@@ -158,7 +317,7 @@ simple</em> rules:</p>
    the line right before it, and <strong>)</strong> at the end of its last
    line.<ul>
 <li><strong>Unless</strong> it is within any type of brackets. Inside <code>()</code>,
-   <code>[]</code> and <code>{}</code> all indent is <em>ignored</em> (so it's even simpler).</li>
+   <code>[]</code> and <code>{}</code> all indent is <em>ignored</em>.</li>
 </ul>
 </li>
 <li>There is an implicit <strong>comma</strong> (<strong>,</strong>) at the end of <strong>every</strong> line,
@@ -183,9 +342,9 @@ simple</em> rules:</p>
 </pre></div>
 
 
-<p>Using these rules, any UG code can be rewritten as a one-liner, though
-doing so is not recommended.</p>
-<h1>Conditionals</h1>
+<p>Using these rules, any piece of UG code can be rewritten to fit on a
+single line, though doing so is not recommended.</p>
+<h1 id="conditionals">Conditionals</h1>
 <p>The <code>if</code> statement looks the same in UG as it does in Python, the only
 difference being that parentheses are required around the condition if
 it involves an operator (comparison, <code>and</code>, etc.)</p>
@@ -211,8 +370,8 @@ it involves an operator (comparison, <code>and</code>, etc.)</p>
 <p>Be careful, though: the first way will not work if you put <code>if</code> on the
 same line as <code>result =</code>. The second way requires the parentheses,
 because <code>if/else</code> must be comma-separated in a <code>(...)</code> block. The
-third way will always work.</p>
-<h1>Looping</h1>
+third way will work everywhere.</p>
+<h1 id="looping">Looping</h1>
 <p>While loops work like in Python. Parentheses are required around the
 condition if it involves an operator (comparison, <code>and</code>, etc.)</p>
 <div class="highlight"><pre><span class="n">i</span><span class="kd"> = </span><span class="m">10</span>
@@ -223,7 +382,7 @@ condition if it involves an operator (comparison, <code>and</code>, etc.)</p>
 </pre></div>
 
 
-<h1>Iteration</h1>
+<h1 id="iteration">Iteration</h1>
 <p>There are two iteration operators: <code>each</code> and <code>map</code>. <code>each</code> executes a
 function on every element of a collection, like Python's <code>for</code> loop:</p>
 <div class="highlight"><pre><span class="n">people</span><span class="kd"> = </span><span class="s">&quot;Balthazar Peter Julie Olaf Eve Hildegarde&quot;</span><span class="na">.split</span><span class="n">[]</span>
@@ -245,13 +404,11 @@ function on every element of a collection, like Python's <code>for</code> loop:<
 
 <p><code>map</code> returns a <em>generator</em>: it does not do anything until it is asked
 to. You can call the <code>list</code> function on it to get a list of results.</p>
-<div class="highlight"><pre><span class="n">numbers</span><span class="kd"> = </span><span class="m">1</span><span class="n"> </span><span class="k">to</span><span class="n"> </span><span class="m">100</span>
+<div class="highlight"><pre><span class="n">numbers</span><span class="kd"> = </span><span class="m">1</span><span class="n"> </span><span class="k">to</span><span class="n"> </span><span class="m">100</span><span class="n"> </span><span class="c1">;; upper bound not inclusive</span>
 <span class="n">squares</span><span class="kd"> = </span><span class="n">list</span><span class="o">!</span><span class="n"> numbers </span><span class="k">map</span><span class="n"> i</span><span class="kd"> -&gt; </span><span class="n">i </span><span class="o">**</span><span class="n"> </span><span class="m">2</span>
 </pre></div>
 
 
-<p>Besides the fact it yields results only on demand, syntactically,
-<code>map</code> works just like <code>each</code>.</p>
 <p>The right hand side of <code>each</code> or <code>map</code> can be a function, but there is
 a caveat: most functions with a single argument take a <em>tuple</em> of
 length one. To illustrate:</p>
@@ -265,7 +422,33 @@ length one. To illustrate:</p>
 </pre></div>
 
 
-<h1>Pattern matching</h1>
+<h2 id="break-and-continue">Break and continue</h2>
+<p>When used in the body of a loop, <code>break</code> will stop the
+iteration. <code>continue</code> will skip to the next element, <em>yielding
+nothing</em> if it is in <code>map</code>.</p>
+<div class="highlight"><pre><span class="n">numbers</span><span class="kd"> = </span><span class="m">1</span><span class="n"> </span><span class="k">to</span><span class="n"> </span><span class="m">100</span>
+<span class="n">even_squares</span><span class="kd"> = </span><span class="n">list</span><span class="o">!</span><span class="n"> numbers </span><span class="k">map</span><span class="n"> i</span><span class="kd"> -&gt;</span>
+<span class="n">    </span><span class="k">if</span><span class="n"> (i </span><span class="o">&gt;</span><span class="n"> </span><span class="m">10</span><span class="n">)</span><span class="o">:</span>
+<span class="n">        break</span>
+<span class="n">    </span><span class="k">elif</span><span class="n"> (i </span><span class="k">mod</span><span class="n"> </span><span class="m">2</span><span class="n">)</span><span class="o">:</span>
+<span class="n">        continue</span>
+<span class="n">    </span><span class="k">else</span><span class="o">:</span>
+<span class="n">        i </span><span class="o">**</span><span class="n"> </span><span class="m">2</span>
+<span class="n">print</span><span class="o">!</span><span class="n"> even_squares </span><span class="c1">;; [4, 16, 36, 64]</span>
+</pre></div>
+
+
+<p>However, there is a shorter way to write this using <em>guards</em>:</p>
+<div class="highlight"><pre><span class="n">even_squares</span><span class="kd"> = </span><span class="n">list</span><span class="o">!</span><span class="n"> numbers </span><span class="k">map</span>
+<span class="n">    i </span><span class="k">when</span><span class="n"> (i </span><span class="o">&gt;</span><span class="n"> </span><span class="m">10</span><span class="n">)</span><span class="kd"> -&gt; </span><span class="n">break</span>
+<span class="n">    i </span><span class="k">when</span><span class="n"> </span><span class="k">not</span><span class="n"> (i </span><span class="k">mod</span><span class="n"> </span><span class="m">2</span><span class="n">)</span><span class="kd"> -&gt; </span><span class="n">i </span><span class="o">**</span><span class="n"> </span><span class="m">2</span>
+</pre></div>
+
+
+<p>The first clause will stop the loop when <code>i</code> is greater than 10. The
+second will generate even squares. Odd numbers below 10 will fall
+through to an implicit <code>continue</code> clause, so nothing is produced.</p>
+<h1 id="pattern-matching">Pattern matching</h1>
 <p>The <code>match</code> construct implements a powerful pattern matching language.
 You can use it to implement a simple calculator, for instance:</p>
 <div class="highlight"><pre><span class="n">calc</span><span class="kd"> = </span><span class="n">[instruction]</span><span class="kd"> -&gt;</span>
@@ -285,7 +468,7 @@ You can use it to implement a simple calculator, for instance:</p>
 </pre></div>
 
 
-<h1>Calling functions</h1>
+<h1 id="calling-functions">Calling functions</h1>
 <p>A function is called simply by putting the function and its argument
 next to each other. Usually, you want to give the function a <em>list</em> of
 arguments, so you just write a list next to it, using the list syntax.
@@ -340,15 +523,15 @@ list. For instance:</p>
 </pre></div>
 
 
-<p>If there is an indented block after <code>!</code>, it will be interpreted as a
-list:</p>
+<p>If there is an indented block after <code>!</code>, each line will be interpreted
+as an element of a list:</p>
 <div class="highlight"><pre><span class="n">print</span><span class="o">!</span>
 <span class="n">    </span><span class="s">&quot;hello,&quot;</span>
 <span class="n">    </span><span class="s">&quot;friend&quot;</span>
 </pre></div>
 
 
-<h1>Defining functions</h1>
+<h1 id="defining-functions">Defining functions</h1>
 <p>Functions are defined using the <code>-&gt;</code> operator. On the left: a
 pattern. On the right: an expression. Usually the pattern will just
 mirror the form of the expected arguments:</p>
@@ -371,9 +554,10 @@ mirror the form of the expected arguments:</p>
 </pre></div>
 
 
+<h2 id="pattern-matching_1">Pattern matching</h2>
 <p>It is possible to define <em>multiple clauses</em>, with one arrow per
-clause. To illustrate, consider this recursive implementation of
-fibonacci numbers:</p>
+clause. Look at this recursive implementation of fibonacci numbers,
+for instance:</p>
 <div class="highlight"><pre><span class="n">fib</span><span class="kd"> =</span>
 <span class="n">    [</span><span class="m">0</span><span class="n">]</span><span class="kd"> -&gt; </span><span class="m">0</span>
 <span class="n">    [</span><span class="m">1</span><span class="n">]</span><span class="kd"> -&gt; </span><span class="m">1</span>
@@ -382,9 +566,22 @@ fibonacci numbers:</p>
 </pre></div>
 
 
-<p>In fact, any legal clause for <code>match</code> is a legal clause for a
-function. The calculator example seen earlier can thus be rewritten
-without <code>match</code>:</p>
+<p>This can be easily used to implement single or multiple dispatch:</p>
+<div class="highlight"><pre><span class="n">add</span><span class="kd"> =</span>
+<span class="n">    [int x, int y]</span><span class="kd"> -&gt; </span><span class="n">x </span><span class="o">+</span><span class="n"> y</span>
+<span class="n">    [str x, y]</span><span class="kd"> -&gt; </span><span class="n">add[int</span><span class="o">!</span><span class="n">x, y]</span>
+<span class="n">    [x, str y]</span><span class="kd"> -&gt; </span><span class="n">add[x, int</span><span class="o">!</span><span class="n">y]</span>
+
+<span class="n">print</span><span class="o">!</span>
+<span class="n">    add[</span><span class="m">1</span><span class="n">, </span><span class="m">2</span><span class="n">]     </span><span class="c1">;; 3</span>
+<span class="n">    add[</span><span class="s">&quot;1&quot;</span><span class="n">, </span><span class="m">2</span><span class="n">]   </span><span class="c1">;; 3</span>
+<span class="n">    add[</span><span class="m">1</span><span class="n">, </span><span class="s">&quot;2&quot;</span><span class="n">]   </span><span class="c1">;; 3</span>
+<span class="n">    add[</span><span class="s">&quot;1&quot;</span><span class="n">, </span><span class="s">&quot;2&quot;</span><span class="n">] </span><span class="c1">;; 3</span>
+</pre></div>
+
+
+<p>Any legal clause for <code>match</code> is a legal clause for a function. The
+calculator example seen earlier can be rewritten without <code>match</code>:</p>
 <div class="highlight"><pre><span class="n">calc</span><span class="kd"> =</span>
 <span class="n">    [int x]</span><span class="kd"> -&gt; </span><span class="n">x</span>
 <span class="n">    [float x]</span><span class="kd"> -&gt; </span><span class="n">x</span>
@@ -398,7 +595,7 @@ without <code>match</code>:</p>
 </pre></div>
 
 
-<h1>Exceptions</h1>
+<h1 id="exceptions">Exceptions</h1>
 <p>Exceptions are caught with the <code>!!</code> operator. On the left is the
 expression that might throw an exception. On the right is either an
 expression to evaluate if there is an error or a function.</p>
@@ -428,9 +625,9 @@ your exception handler, one for every kind of exception:</p>
 
 <p>There are two kinds of special clauses you can add. The <code>success</code>
 clause will be executed if there is no error, with the result of the
-expression as its value (akin to the <code>else</code> clause in Python's
+expression as its argument (akin to the <code>else</code> clause in Python's
 <code>try/except</code>). The <code>finally</code> clause will always be executed at the
-end, no matter what happens, but its return value is irrelevant.</p>
+end, no matter what happens.</p>
 <div class="highlight"><pre><span class="c1">;; Prints &quot;finally&quot;, then &quot;abc&quot;</span>
 <span class="n">print</span><span class="o">!</span><span class="n"> </span><span class="s">&quot;a&quot;</span><span class="n"> </span><span class="o">+</span><span class="n"> </span><span class="s">&quot;b&quot;</span><span class="kd"> !!</span>
 <span class="n">    e</span><span class="kd"> -&gt; </span><span class="no">None</span>
